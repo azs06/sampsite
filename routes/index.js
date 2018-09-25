@@ -101,4 +101,34 @@ router.get('/student/:id', function(req, res, next){
 
 })
 
+router.post('updatestudent', function(req, res){
+	MongoClient.connect(url, function(err, client){
+		if(err){
+			console.log("Unable to connect to the database", err)
+		}else{
+	  		var db = client.db(dbName);
+		    var collection = db.collection('students');
+		    var student = {
+		    	student: req.body.student,
+		    	street: req.body.street,
+		    	city: req.body.city,
+		    	state: req.body.state,
+		    	sex: req.body.sex,
+		    	gpa: req.body.gpa
+		    }
+		    collection.update([student], function(err, result){
+
+		    	if(err){
+		    		console.log(err)
+		    	}else{
+		    		res.redirect("thelist")
+		    	}
+
+
+		    })
+		}
+
+	})	
+})
+
 module.exports = router;

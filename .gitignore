@@ -1,2 +1,5 @@
 .DS_Store
 node_modules/
+data/
+data/diagnostic.data/metrics.2018-09-23T10-10-15Z-00000
+data/diagnostic.data/metrics.interim
