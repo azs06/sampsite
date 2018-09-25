@@ -1,0 +1,32 @@
+extends layout
+
+block content
+	h3= title
+	h4= id
+	if student
+		form#form_add_student(name="updatestudent", method="post", action="/updatestudent")
+		span Name
+		span &nbsp;
+		input#name(type="text", placeholder="student", name="student", value=student.student)
+		<br/>	
+		span Street
+		span &nbsp;
+		input#street(type="text", placeholder="street", name="street", value=student.street)
+		<br/>	
+		span City
+		span &nbsp;
+		input#city(type="text", placeholder="city", name="city", value=student.city)
+		<br/>
+		span State
+		span &nbsp;
+		input#state(type="text", placeholder="state", name="state", value=student.state)
+		<br/>
+		span Sex
+		span &nbsp;
+		input#sex(type="text", placeholder="sex", name="sex", value=student.sex)
+		<br/>
+		span GPA
+		span &nbsp;
+		input#gpa(type="text", placeholder="gpa", name="gpa", value=student.gpa)
+		<br/>
+		button#submit_student(type="submit") save	
