@@ -73,7 +73,6 @@ router.post('/addstudent', function(req, res){
 })
 
 router.get('/student/:id', function(req, res, next){
-	console.log(req.params.id);
 	var student = null;
 	var objectId = new ObjectID(req.params.id);
 	MongoClient.connect(url, function(err, client){
@@ -86,6 +85,7 @@ router.get('/student/:id', function(req, res, next){
 		    	if(err){
 					res.send(err)
 		    	}else if(docs.length){
+		    		  console.log(docs[0])
     				  res.render('student', {
 					  title: 'Edit Student',
 					  id: req.params.id,
@@ -101,7 +101,9 @@ router.get('/student/:id', function(req, res, next){
 
 })
 
-router.post('updatestudent', function(req, res){
+router.post('/updatestudent', function(req, res){
+	var id = req.body.id;
+	var objectId = new ObjectID(id);
 	MongoClient.connect(url, function(err, client){
 		if(err){
 			console.log("Unable to connect to the database", err)
@@ -116,14 +118,12 @@ router.post('updatestudent', function(req, res){
 		    	sex: req.body.sex,
 		    	gpa: req.body.gpa
 		    }
-		    collection.update([student], function(err, result){
-
+		    collection.updateOne({ '_id': objectId }, { $set: student }, function(err, result){
 		    	if(err){
 		    		console.log(err)
 		    	}else{
 		    		res.redirect("thelist")
 		    	}
-
 
 		    })
 		}
