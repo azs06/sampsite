@@ -1,5 +1,5 @@
 {
-  "name": "sampsite",
+  "name": "simple-crud-express-mongodb",
   "version": "0.0.0",
   "private": true,
   "scripts": {
