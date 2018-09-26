@@ -131,4 +131,8 @@ router.post('/updatestudent', function(req, res){
 	})	
 })
 
+router.get('/deletestudent/:id', function(req, res){
+
+})
+
 module.exports = router;
