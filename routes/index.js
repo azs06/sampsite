@@ -131,8 +131,26 @@ router.post('/updatestudent', function(req, res){
 	})	
 })
 
-router.get('/deletestudent/:id', function(req, res){
+router.post('/deletestudent/', function(req, res){
+	var id = req.body.id;
+	var objectId = new ObjectID(id);
+	MongoClient.connect(url, function(err, client){
+		if(err){
+			console.log("Unable to connect to the database", err)
+		}else{
+	  		var db = client.db(dbName);
+		    var collection = db.collection('students');
+		    collection.deleteOne({ '_id': objectId }, function(err, result){
+		    	if(err){
+		    		console.log(err)
+		    	}else{
+		    		res.redirect("thelist")
+		    	}
 
+		    })
+		}
+
+	})	
 })
 
 module.exports = router;

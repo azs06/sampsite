@@ -7,4 +7,6 @@ block content
 		each student, i in studentlist
 			li#student_list_item
 				a(href="/student/" + student._id) #{student.student} lives at #{student.street} #{student.city}, #{student.state}
-				a(href="/deletestudent/" + student.id) delete		
+				form#delete_student(name="deletestudent", method="post", action="/deletestudent")
+					input#student_id(type="hidden", name="id", value=student._id)
+					button#delete_student_submit(type="submit") delete	
